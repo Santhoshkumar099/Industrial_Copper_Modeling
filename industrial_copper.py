@@ -3,7 +3,8 @@ from streamlit_option_menu import option_menu
 import datetime
 import numpy as np
 import pickle
-
+from sklearn.preprocessing import StandardScaler,LabelEncoder
+from sklearn.ensemble import RandomForestClassifier
 
 #page congiguration
 st.set_page_config(page_title= "Copper Modelling",
@@ -20,16 +21,21 @@ if selected=='🏡HOME':
     with col1:
         st.subheader(':red[What is copper?]')
 
-        st.markdown('''<h5 style='color:grey;font-size:21px'> Copper is a reddish brown metal that is found in abundance all around the world, 
-                    while the top three producers are Chile, Peru, and China. Historically, copper was the first metal to be worked 
-                    by human hands. When we discovered that it could be hardened with tin to make bronze around 3000 BC,
-                    the Bronze Age was ushered in, changing the course of humanity.''',unsafe_allow_html=True)
+        st.markdown('''<h5 style='color:grey;font-size:21px'> The Industrial Copper Modeling project focuses 
+                    on predicting the selling price and status (won or lost) in the industrial copper market 
+                    using machine learning regression and classification algorithms.''',unsafe_allow_html=True)
         
     with col2:
         st.video('https://www.youtube.com/watch?v=gqmkiPPIsUQ&pp=ygUNIGFib3V0IGNvcHBlcg%3D%3D')
+
+    col1,col2=st.columns(2)
+    with col1:
+        st.write('## Tools and Technologies used')
+        st.write('Python, Streamlit, NumPy, Pandas, Scikit-learn, Matplotlib, Seaborn, Pickle, Streamlit-Option-Menu')
+
+    with col2:
+        st.image('F:\IT Field\Python01\MDTM20\Project04\Copper.avif')
     
-
-
 
 
 if selected=='💸PRICE PREDICTION':
@@ -194,13 +200,13 @@ if selected=='🏆STATUS':
                 st.write('')
                 if st.button('PREDICT STATUS'):
                     data_cls = []
-                    with open('country.pkl', 'rb') as file:
+                    with open('F:\IT Field\Python01\MDTM20\Project04\country.pkl', 'rb') as file:
                         encode_country_cls = pickle.load(file)
-                    with open('item type.pkl', 'rb') as file:
+                    with open('F:\IT Field\Python01\MDTM20\Project04\item_type.pkl', 'rb') as file:
                         encode_item_cls = pickle.load(file)
-                    with open('scaling_classify.pkl', 'rb') as file:
+                    with open('F:\IT Field\Python01\MDTM20\Project04\scaling_classify.pkl', 'rb') as file:
                         scaled_data_cls = pickle.load(file)
-                    with open('RandomForestClassification.pkl', 'rb') as file:
+                    with open('F:\IT Field\Python01\MDTM20\Project04\RandomForestClassification.pkl', 'rb') as file:
                         trained_model_cls = pickle.load(file)
 
                     encode=LabelEncoder()
@@ -276,5 +282,5 @@ if selected == '🎯CONCLUSION':
     linkedin = (f'{"LinkedIn :"}  {""}')
     description = "An Aspiring DATA-SCIENTIST..!"
 
-    st.markdown("This project is done by Santhosh Kumar M")
+    st.markdown("This App is Created by Santhosh Kumar M")
 
